@@ -6,11 +6,12 @@ import "firebase/compat/storage";
 const firebaseApp = firebase.initializeApp({
   apiKey: "AIzaSyDgHMTlQssJNL9h7Pp8Ym65cT83r7rZd9A",
   authDomain: "cloudmary-f5cd2.firebaseapp.com",
+  databaseURL: "https://cloudmary-f5cd2-default-rtdb.firebaseio.com",
   projectId: "cloudmary-f5cd2",
   storageBucket: "cloudmary-f5cd2.appspot.com",
   messagingSenderId: "280795180324",
   appId: "1:280795180324:web:20e36dd5e75c09ad1757b1",
-  measurementId: "G-SV36VTDEVL"
+  measurementId: "G-SV36VTDEVL",
 });
 
 const db = firebaseApp.firestore();

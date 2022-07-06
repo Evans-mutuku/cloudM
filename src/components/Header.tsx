@@ -29,17 +29,17 @@ const Header: React.FC = () => {
                     >
                         About
                     </p>
-                    <p  onClick={() => navigate("/contacts")} className="hover:text-green-600 cursor-pointer text-lg"
+                    <p  onClick={() => navigate("/contact")} className="hover:text-green-600 cursor-pointer text-lg"
                     >
                         Contacts
                     </p>
-                    <p  onClick={() => navigate("/hireDevelopers")} className="hover:text-green-600 cursor-pointer text-lg"
+                    <p  onClick={() => navigate("/developers")} className="hover:text-green-600 cursor-pointer text-lg"
                     >
                         Hire
                     </p>
-                    <p  onClick={validateUpload} className="hover:text-green-600 cursor-pointer text-lg"
+                    <p  onClick={() => navigate('/jobs')} className="hover:text-green-600 cursor-pointer text-lg"
                     >
-                        Post Job
+                        Find Job
                     </p>
                 </div>
                 <div className="space-x-5">
@@ -50,10 +50,10 @@ const Header: React.FC = () => {
                         Upload Job
                     </button>
                     <button
-                     onClick={() => navigate("/jobs")}
+                     onClick={() => navigate("/createProfile")}
                         className="py-2 px-5 bg-green-600 hover:bg-white hover:text-green-600 border-green-600 border text-sm rounded-full text-white"
                     >
-                        Find Job
+                        Create Dev Profile
                     </button>
                 </div>
             </nav>

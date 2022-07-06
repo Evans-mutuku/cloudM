@@ -1,25 +1,56 @@
 import React, { useState } from 'react'
-import { auth } from '../utils/firebase'
+import { useDispatch } from 'react-redux'
+import { login } from '../features/userSlice'
+import { auth, provider } from '../utils/firebase'
 
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState<string>("")
-    const [password, setPassword] = useState<string | number>("")
+    const [password, setPassword] = useState<any>("")
+      const dispatch = useDispatch();
 
-    const register = (e: any) => {
-        e.preventDefault()
+     const register = (e: any) => {
+    e.preventDefault();
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((userAuth) => {
+        userAuth.user?.updateProfile({}).then(() => {
+          dispatch(
+            login({
+              email: userAuth.user?.email,
+              uid: userAuth.user?.uid,
+            })
+          );
+        });
+      })
+      .catch((error) => alert(error.message));
+  };
 
-        
+  const signUp = (e: any) => {
+    e.preventDefault();
 
-    }
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((userAuth) => {
+        dispatch(
+          login({
+            email: userAuth.user?.email,
+            uid: userAuth.user?.uid,
+          })
+        );
+      })
+      .catch((error) => alert(error.message));
+  };
 
-    const signUp = () => {
-
-    }
-
-    const googleSignUp = () => {
-
-    }
+  const googleSignUp = (e: any) => {
+    auth.signInWithPopup(provider).then(result => {
+      dispatch(login({
+          username: result.user?.displayName,
+          profilePic: result.user,
+          id: result.user
+      }))
+  }).catch(error => alert(error.message));
+  };
     return (
         <div className="mx-auto w-5/6 pt-10 pb-10 min-h-[75vh]">
             <div >
